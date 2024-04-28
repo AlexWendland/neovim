@@ -39,7 +39,7 @@ require('lazy').setup({
 
   require 'kickstart/plugins/cmp',
 
-  require 'kickstart/plugins/tokyonight',
+  require 'kickstart/plugins/colour-scheme',
 
   require 'kickstart/plugins/todo-comments',
 
@@ -85,5 +85,8 @@ require('lazy').setup({
     },
   },
 })
+
+-- Setup colour scheme
+vim.cmd.colorscheme 'catppuccin'
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -34,6 +34,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Copy current file path to clipboard
+vim.keymap.set('n', '<leader>cp', ':let @+=expand("%")<CR>', { desc = 'Copy [C]urrent [P]ath to clipboard' })
+
 -- lazygit
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = 'Open [L]azy[G]it window' })
 
