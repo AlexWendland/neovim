@@ -13,7 +13,7 @@ External Requirements:
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - [lazygit](https://github.com/kdheepak/lazygit.nvim)
 - python
-- nodejs
+- nodejs with npm.
 
 Once you start you need to run
 `:Copilot auth`
