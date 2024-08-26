@@ -82,8 +82,6 @@ return {
           { name = 'cmdline' },
         }),
       })
-      -- Setup clangd extension
-      table.insert(opts.sorting.comparators, 1, require 'clangd_extensions.cmp_scores')
     end,
   },
 }
