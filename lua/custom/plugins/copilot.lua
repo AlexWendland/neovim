@@ -12,6 +12,8 @@ return {
         python = true,
         markdown = true,
         lua = true,
+        c = true,
+        cpp = true,
         ['*'] = false,
       },
     }
