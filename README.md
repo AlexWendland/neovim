@@ -11,7 +11,7 @@ This is shamelessly stolen from:
 External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
-- [lazygit](https://github.com/kdheepak/lazygit.nvim)
+- [lazygit](https://github.com/jesseduffield/lazygit)
 - python
 - nodejs with npm.
 
