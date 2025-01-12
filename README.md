@@ -2,6 +2,7 @@
 
 This is shamelessly stolen from:
 - https://github.com/nvim-lua/kickstart.nvim
+It has been adapted to work with nixos.
 
 ## Setup
 
