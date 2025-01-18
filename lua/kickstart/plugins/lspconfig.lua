@@ -4,7 +4,6 @@ return {
     -- Note I do not use Mason as it does not work with nixos.
     dependencies = {
       -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- 'neodev' configures Lua LSP for your Neovim config, runtime, and plugins
@@ -94,7 +93,7 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+      -- To see what lsps are supported use :help lspconfig-all.
 
       --  Add any additional override configuration in the following tables. Available keys are:
       --  - cmd (table): Override the default command used to start the server
@@ -103,30 +102,22 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        -- I have been lazy and just installed all my lsps using nixos within my nvim config. So any change
+        -- here will need to be reflected there.
         clangd = {
           filetypes = { 'c', 'cpp' },
         },
-        -- gopls = {},
         basedpyright = {
           filetypes = { 'python' },
         },
         ruff_lsp = {
           filetypes = { 'python' },
         },
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+        markman = {
+          filetypes = { 'markdown' },
+        },
 
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
               runtime = { version = 'LuaJIT' },
@@ -150,7 +141,8 @@ return {
           },
         },
       }
-      local lspconfig = require('lspconfig')
+      -- This actually sets up the LSP servers with the capabilities we've defined above.
+      local lspconfig = require 'lspconfig'
       for server_name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
         lspconfig[server_name].setup(server)
