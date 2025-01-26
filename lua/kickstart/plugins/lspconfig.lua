@@ -113,7 +113,7 @@ return {
         ruff_lsp = {
           filetypes = { 'python' },
         },
-        markman = {
+        marksman = {
           filetypes = { 'markdown' },
         },
 
