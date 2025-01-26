@@ -110,7 +110,7 @@ return {
         basedpyright = {
           filetypes = { 'python' },
         },
-        ruff_lsp = {
+        ruff = {
           filetypes = { 'python' },
         },
         marksman = {
