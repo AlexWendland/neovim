@@ -140,6 +140,16 @@ return {
             },
           },
         },
+        rust_analyzer = {
+          filetypes = { 'rust' },
+          settings = {
+            ['rust-analyzer'] = {
+              checkOnSave = {
+                command = 'clippy',
+              },
+            },
+          },
+        },
       }
       -- This actually sets up the LSP servers with the capabilities we've defined above.
       local lspconfig = require 'lspconfig'
