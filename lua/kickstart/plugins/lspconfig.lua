@@ -116,6 +116,9 @@ return {
         marksman = {
           filetypes = { 'markdown' },
         },
+        eslint = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+        },
 
         lua_ls = {
           settings = {
