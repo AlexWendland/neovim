@@ -14,7 +14,7 @@ return {
         lua = true,
         c = true,
         cpp = true,
-        ['*'] = false,
+        ['*'] = true,
       },
     }
   end,
