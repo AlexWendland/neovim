@@ -116,7 +116,11 @@ return {
         marksman = {
           filetypes = { 'markdown' },
         },
+
         eslint = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+        },
+        tsserver = {
           filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
         },
 
