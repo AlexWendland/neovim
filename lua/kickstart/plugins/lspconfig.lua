@@ -120,7 +120,7 @@ return {
         eslint = {
           filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
         },
-        tsserver = {
+        ts_ls = {
           filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
         },
         tailwindcss = {
