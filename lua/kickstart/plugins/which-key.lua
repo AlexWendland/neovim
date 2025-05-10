@@ -22,20 +22,14 @@ return {
 
       -- Document existing key chains
       require('which-key').register {
-        { '', group = '[R]ename' },
-        { '', group = '[C]ode' },
-        { '', desc = '<leader>w_', hidden = true },
-        { '', desc = '<leader>c_', hidden = true },
-        { '', desc = '<leader>d_', hidden = true },
+        { '', group = '[S]earch' },
         { '', group = '[D]ocument' },
         { '', group = '[G]it' },
         { '', group = '[W]orkspace' },
+        { '', group = '[R]ename' },
+        { '', group = '[C]ode' },
         { '', group = '[T]oggle' },
-        { '', desc = '<leader>r_', hidden = true },
-        { '', desc = '<leader>t_', hidden = true },
-        { '', group = '[S]earch' },
-        { '', desc = '<leader>s_', hidden = true },
-        { '', desc = '<leader>g_', hidden = true },
+        { '', desc = '', hidden = true, mode = { 'n', 'n', 'n', 'n', 'n', 'n', 'n' } },
       }
     end,
   },
