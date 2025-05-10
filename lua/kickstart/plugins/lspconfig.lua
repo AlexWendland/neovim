@@ -123,6 +123,9 @@ return {
         tsserver = {
           filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
         },
+        tailwindcss = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css' },
+        },
 
         lua_ls = {
           settings = {
