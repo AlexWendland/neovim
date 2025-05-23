@@ -7,8 +7,8 @@ return {
   keys = {
     {
       '<leader>tt',
-      mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
+      mode = { 'n', 'v' },
       desc = '[T]oggle [T]ree',
     },
     {
@@ -23,8 +23,4 @@ return {
       show_help = '<f1>',
     },
   },
-  -- 👇 if you use `open_for_directories=true`, this is recommended
-  init = function()
-    vim.g.loaded_netrwPlugin = 1
-  end,
 }
