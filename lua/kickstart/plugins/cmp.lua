@@ -75,13 +75,14 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'supermaven' },
+          { name = 'copilot' },
           { name = 'buffer' },
         },
         formatting = {
           format = lspkind.cmp_format {
             mode = 'symbol',
             max_width = 50,
-            symbol_map = { Supermaven = '' },
+            symbol_map = { Supermaven = '', Copilot = '' },
           },
         },
       }
