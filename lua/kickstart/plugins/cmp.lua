@@ -71,12 +71,12 @@ return {
           ['<CR>'] = cmp.config.disablem,
         },
         sources = {
-          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp', priority = 10 },
           { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'supermaven' },
-          { name = 'copilot' },
-          { name = 'buffer' },
+          { name = 'path', priority = 9 },
+          { name = 'supermaven', priority = 8 },
+          { name = 'copilot', priority = 8 },
+          { name = 'buffer', priority = 9 },
         },
         formatting = {
           format = lspkind.cmp_format {
