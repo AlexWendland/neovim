@@ -16,10 +16,6 @@ External Requirements:
 - python
 - nodejs with npm.
 
-Once you start you need to run
-`:Copilot auth`
-to set up copilot.
-
 ## Video help
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)

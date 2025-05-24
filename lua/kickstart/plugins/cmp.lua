@@ -26,12 +26,16 @@ return {
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
-      'zbirenbaum/copilot-cmp',
+      'supermaven-inc/supermaven-nvim',
+
+      -- Adds vscode-like pictograms to nvim-cmp completions
+      'onsails/lspkind-nvim',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       luasnip.config.setup {}
 
       cmp.setup {
@@ -70,8 +74,15 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'copilot' },
+          { name = 'supermaven' },
           { name = 'buffer' },
+        },
+        formatting = {
+          format = lspkind.cmp_format {
+            mode = 'symbol',
+            max_width = 50,
+            symbol_map = { Supermaven = '' },
+          },
         },
       }
       cmp.setup.cmdline(':', {
