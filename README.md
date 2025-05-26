@@ -23,3 +23,9 @@ to set up copilot.
 ## Video help
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
+
+## Test this config
+
+```
+$ XDG_CONFIG_HOME="/home/alex/repo/" NVIM_APPNAME="neovim" nvim
+```
