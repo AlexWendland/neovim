@@ -10,7 +10,81 @@ return {
       -- used for completion, annonations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
     },
-    config = function()
+    opts = {
+      -- Enable the following language servers
+      -- To see what lsps are supported use :help lspconfig-all.
+      --
+      --  Add any additional override configuration in the following tables. Available keys are:
+      --  - cmd (table): Override the default command used to start the server
+      --  - filetypes (table): Override the default list of associated filetypes for the server
+      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+      --  - settings (table): Override the default settings passed when initializing the server.
+      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      servers = {
+        -- I have been lazy and just installed all my lsps using nixos within my nvim config. So any change
+        -- here will need to be reflected there.
+        clangd = {
+          filetypes = { 'c', 'cpp' },
+        },
+        basedpyright = {
+          filetypes = { 'python' },
+        },
+        ruff = {
+          filetypes = { 'python' },
+        },
+        marksman = {
+          filetypes = { 'markdown' },
+        },
+
+        eslint = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+        },
+        ts_ls = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+        },
+        tailwindcss = {
+          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css' },
+        },
+        pyrefly = {
+          filetypes = { 'python' },
+        },
+
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = { version = 'LuaJIT' },
+              workspace = {
+                checkThirdParty = false,
+                -- Tells lua_ls where to find all the Lua files that you have loaded
+                -- for your neovim configuration.
+                library = {
+                  '${3rd}/luv/library',
+                  unpack(vim.api.nvim_get_runtime_file('', true)),
+                },
+                -- If lua_ls is really slow on your computer, you can try this instead:
+                -- library = { vim.env.VIMRUNTIME },
+              },
+              completion = {
+                callSnippet = 'Replace',
+              },
+              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+        },
+        rust_analyzer = {
+          filetypes = { 'rust' },
+          settings = {
+            ['rust-analyzer'] = {
+              checkOnSave = {
+                command = 'clippy',
+              },
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -92,80 +166,17 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      -- Enable the following language servers
-      -- To see what lsps are supported use :help lspconfig-all.
+      -- Setup each server using the new nvim 11.0+ API
+      local servers = opts.servers or {}
+      for server_name, server_config in pairs(servers) do
+        -- Merge capabilities into each server config
+        server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
 
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
-        -- I have been lazy and just installed all my lsps using nixos within my nvim config. So any change
-        -- here will need to be reflected there.
-        clangd = {
-          filetypes = { 'c', 'cpp' },
-        },
-        basedpyright = {
-          filetypes = { 'python' },
-        },
-        ruff = {
-          filetypes = { 'python' },
-        },
-        marksman = {
-          filetypes = { 'markdown' },
-        },
+        -- Use vim.lsp.config to define/customize the server config
+        vim.lsp.config(server_name, server_config)
 
-        eslint = {
-          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
-        },
-        ts_ls = {
-          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
-        },
-        tailwindcss = {
-          filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css' },
-        },
-
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = { version = 'LuaJIT' },
-              workspace = {
-                checkThirdParty = false,
-                -- Tells lua_ls where to find all the Lua files that you have loaded
-                -- for your neovim configuration.
-                library = {
-                  '${3rd}/luv/library',
-                  unpack(vim.api.nvim_get_runtime_file('', true)),
-                },
-                -- If lua_ls is really slow on your computer, you can try this instead:
-                -- library = { vim.env.VIMRUNTIME },
-              },
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-        rust_analyzer = {
-          filetypes = { 'rust' },
-          settings = {
-            ['rust-analyzer'] = {
-              checkOnSave = {
-                command = 'clippy',
-              },
-            },
-          },
-        },
-      }
-      -- This actually sets up the LSP servers with the capabilities we've defined above.
-      local lspconfig = require 'lspconfig'
-      for server_name, server in pairs(servers) do
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        lspconfig[server_name].setup(server)
+        -- Enable the server for its configured filetypes
+        vim.lsp.enable(server_name)
       end
     end,
   },
