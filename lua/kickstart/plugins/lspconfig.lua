@@ -47,6 +47,17 @@ return {
         },
         pyrefly = {
           filetypes = { 'python' },
+          settings = {
+            python = {
+              analysis = {
+                inlayHints = {
+                  variableTypes = true,
+                  functionReturnTypes = true,
+                  callArgumentNames = 'all',
+                },
+              },
+            },
+          },
         },
 
         lua_ls = {

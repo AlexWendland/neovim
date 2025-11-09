@@ -63,4 +63,7 @@ vim.opt.scrolloff = 10
 -- Set spelling checks by default
 vim.opt.spell = true
 
+-- Enable inlay hints globally
+vim.lsp.inlay_hint.enable(true)
+
 -- vim: ts=2 sts=2 sw=2 et
