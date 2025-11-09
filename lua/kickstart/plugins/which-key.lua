@@ -18,18 +18,25 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        { '', group = '[S]earch' },
-        { '', group = '[D]ocument' },
-        { '', group = '[G]it' },
-        { '', group = '[W]orkspace' },
-        { '', group = '[R]ename' },
-        { '', group = '[C]ode' },
-        { '', group = '[T]oggle' },
-        { '', desc = '', hidden = true, mode = { 'n', 'n', 'n', 'n', 'n', 'n', 'n' } },
+      require('which-key').setup {
+        -- Document existing key chains
+        spec = {
+          { '<leader>b', group = '[B]reakpoint' },
+          { '<leader>c', group = '[C]ode' },
+          { '<leader>d', group = '[D]ocument' },
+          { '<leader>g', group = '[G]it' },
+          { '<leader>l', group = '[L]azy' },
+          { '<leader>r', group = '[R]ename' },
+          { '<leader>s', group = '[S]earch' },
+          { '<leader>t', group = '[T]oggle' },
+          { '<leader>w', group = '[W]orkspace' },
+          -- Standalone mappings
+          { '<leader>e', desc = 'Show diagnostic [E]rror messages' },
+          { '<leader>q', desc = 'Open diagnostic [Q]uickfix list' },
+          { '<leader>D', desc = 'Type [D]efinition' },
+          { '<leader>/', desc = '[/] Fuzzily search in current buffer' },
+          { '<leader><leader>', desc = '[ ] Find existing buffers' },
+        },
       }
     end,
   },
