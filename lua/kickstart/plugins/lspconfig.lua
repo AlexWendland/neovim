@@ -26,9 +26,9 @@ return {
         clangd = {
           filetypes = { 'c', 'cpp' },
         },
-        basedpyright = {
-          filetypes = { 'python' },
-        },
+        -- basedpyright = {
+        --   filetypes = { 'python' },
+        -- },
         ruff = {
           filetypes = { 'python' },
         },
