@@ -93,6 +93,9 @@ return {
             },
           },
         },
+        gopls = {
+          filetypes = { 'go' },
+        },
       },
     },
     config = function(_, opts)
