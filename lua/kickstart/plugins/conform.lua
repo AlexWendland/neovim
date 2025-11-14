@@ -18,6 +18,8 @@ return {
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
         css = { 'prettierd', 'prettier' },
+        go = { 'gofmt' },
+        rust = { 'rustfmt' },
       },
     },
   },
