@@ -27,6 +27,12 @@ vim.opt.clipboard = 'unnamedplus'
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Set default indentation to 2 spaces
+vim.opt.tabstop = 2      -- Number of spaces a tab counts for
+vim.opt.shiftwidth = 2   -- Number of spaces for indentation
+vim.opt.softtabstop = 2  -- Number of spaces for tab key in insert mode
+vim.opt.expandtab = true -- Convert tabs to spaces
+
 -- Save undo history
 vim.opt.undofile = true
 
