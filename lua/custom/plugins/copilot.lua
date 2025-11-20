@@ -1,21 +1,21 @@
 return {
-  'zbirenbaum/copilot.lua',
-  cmd = 'Copilot',
-  event = 'InsertEnter',
-  config = function()
-    require('copilot').setup {
-      panel = { enabled = false },
-      suggestion = {
-        enabled = false,
-      },
-      filetypes = {
-        python = true,
-        markdown = true,
-        lua = true,
-        c = true,
-        cpp = true,
-        ['*'] = true,
-      },
-    }
-  end,
+  --  'zbirenbaum/copilot.lua',
+  --  cmd = 'Copilot',
+  --  event = 'InsertEnter',
+  --  config = function()
+  --    require('copilot').setup {
+  --      panel = { enabled = false },
+  --      suggestion = {
+  --        enabled = false,
+  --      },
+  --      filetypes = {
+  --        python = true,
+  --        markdown = true,
+  --        lua = true,
+  --        c = true,
+  --        cpp = true,
+  --        ['*'] = true,
+  --      },
+  --    }
+  --  end,
 }
