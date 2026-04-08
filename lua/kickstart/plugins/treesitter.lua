@@ -8,9 +8,13 @@ return {
       -- Install parsers
       require('nvim-treesitter').install { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'cpp', 'python', 'nix', 'typescript', 'rust', 'go' }
 
-      -- Enable treesitter highlighting per filetype
+      -- Enable treesitter highlighting per filetype, auto-installing parsers on demand
       vim.api.nvim_create_autocmd('FileType', {
         callback = function()
+          local ft = vim.bo.filetype
+          if ft and ft ~= '' then
+            require('nvim-treesitter').install { ft }
+          end
           pcall(vim.treesitter.start)
         end,
       })
