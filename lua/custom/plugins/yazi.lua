@@ -23,5 +23,8 @@ return {
     keymaps = {
       show_help = '<f1>',
     },
+    open_file_function = function(chosen_file, config, state)
+      vim.cmd('edit! ' .. vim.fn.fnameescape(chosen_file))
+    end,
   },
 }
