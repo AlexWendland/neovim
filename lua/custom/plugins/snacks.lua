@@ -11,7 +11,7 @@ return {
     picker = { enabled = true },
     notifier = { enabled = true },
     scope = { enabled = false }, -- disabled: nvim 0.12 TSNode:range() API break
-    scroll = { enabled = true },
+    scroll = { enabled = false }, -- causes which-key "Recursion detected" errors via excessive ModeChanged events
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },
