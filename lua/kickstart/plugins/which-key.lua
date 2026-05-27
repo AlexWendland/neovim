@@ -16,9 +16,12 @@
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VeryLazy',
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup {
+        triggers = {
+          { '<auto>', mode = 'nso' }, -- exclude visual modes (v/V/^V) to avoid ModeChanged recursion
+        },
         -- Document existing key chains
         spec = {
           { '<leader>b', group = '[B]reakpoint' },
