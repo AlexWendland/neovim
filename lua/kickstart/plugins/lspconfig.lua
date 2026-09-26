@@ -104,6 +104,8 @@ return {
       },
     },
     config = function(_, opts)
+      local _codeterraform_notify_patched = false
+
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -174,6 +176,19 @@ return {
               buffer = event.buf,
               callback = vim.lsp.buf.clear_references,
             })
+          end
+
+          -- Suppress "method not supported" popups from codeterraform, which doesn't
+          -- implement every LSP method neovim tries to call.
+          if client and client.name == 'codeterraform' and not _codeterraform_notify_patched then
+            _codeterraform_notify_patched = true
+            local orig_notify = vim.notify
+            vim.notify = function(msg, level, n_opts)
+              if type(msg) == 'string' and msg:find('vim%.lsp.*method') then
+                return
+              end
+              return orig_notify(msg, level, n_opts)
+            end
           end
         end,
       })
