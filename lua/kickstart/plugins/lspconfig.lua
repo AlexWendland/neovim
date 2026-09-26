@@ -96,6 +96,11 @@ return {
         gopls = {
           filetypes = { 'go' },
         },
+        codeterraform = {
+          cmd = { 'node', '/home/alex/.local/share/io.codeterraform.game/external-ide/server/server.cjs', '--stdio' },
+          filetypes = { 'python' },
+          root_markers = { 'codeterraform-workspace.json' },
+        },
       },
     },
     config = function(_, opts)
